@@ -46,11 +46,11 @@ string Vending(Dictionary<int, int> machine, int unitPrice, int userPayment)
 }
 
 /*
- * this function is called when the userPayment exceeds the unitPrice
- * this function will accept a dictionary from the vending machine being used, and the change from the Vending function
- * a foreach loop is called to check every individual coin type in the called Dictionary
- * the loop will display a message stating which coin type is "dispensed" and how many pieces are "dispensed"
- */
+* this function is called when the userPayment exceeds the unitPrice
+* this function will accept a dictionary from the vending machine being used, and the change from the Vending function
+* a foreach loop is called to check every individual coin type in the called Dictionary
+* the loop will display a message stating which coin type is "dispensed" and how many pieces are "dispensed"
+*/
 void CalculateCoins(Dictionary<int, int> machine, int totalChange)
 {
     int change = totalChange;
@@ -88,3 +88,31 @@ Console.WriteLine("=========== Question 1 ===========");
 Console.WriteLine(Vending(vendingMachine, 2, 11)); // $2: 4 pieces, $1: 1 pieces
 Console.WriteLine(Vending(vendingMachine, 5, 20)); // $10: 1 pieces, $2: 2 pieces, $1: 1 pieces
 Console.WriteLine(Vending(vendingMachine, 1, 23)); // $10: 2 pieces, $2: 1 pieces
+
+
+public class VendingMachine
+{
+    public int SerialNumber { get; set; }
+    public Dictionary<int, int> MoneyFloat { get; set; }
+    public Dictionary<Product, int> Inventory { get; set; }
+
+    public string StockItem(Product product, int quantity)
+    {
+        Inventory.Add(product, quantity);
+        return product.Name;
+    }
+
+    public string StockFloat(int moneyDenomination, int quantity)
+    {
+        MoneyFloat.Add(moneyDenomination, quantity);
+        return MoneyFloat;
+    }
+}
+
+public class Product
+{
+    public string Name { get; set; }
+    public int Price { get; set; }
+    public string Code { get; set; }
+
+}
