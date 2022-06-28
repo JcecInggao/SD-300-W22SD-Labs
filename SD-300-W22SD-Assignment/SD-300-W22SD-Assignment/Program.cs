@@ -84,11 +84,10 @@ void CalculateCoins(Dictionary<int, int> machine, int totalChange)
     }
 }
 
-Console.WriteLine("=========== Question 1 ===========");
-Console.WriteLine(Vending(vendingMachine, 2, 11)); // $2: 4 pieces, $1: 1 pieces
-Console.WriteLine(Vending(vendingMachine, 5, 20)); // $10: 1 pieces, $2: 2 pieces, $1: 1 pieces
-Console.WriteLine(Vending(vendingMachine, 1, 23)); // $10: 2 pieces, $2: 1 pieces
-
+VendingMachine machine1 = new VendingMachine();
+Product kitKat = new Product("KitKat", 2, "A1");
+Console.WriteLine(machine1.StockItem(kitKat, 12));
+Console.WriteLine(machine1.StockFloat(1, 10));
 
 public class VendingMachine
 {
@@ -96,16 +95,32 @@ public class VendingMachine
     public Dictionary<int, int> MoneyFloat { get; set; }
     public Dictionary<Product, int> Inventory { get; set; }
 
-    public string StockItem(Product product, int quantity)
+    public VendingMachine ()
+	{
+
+	}
+
+    public void StockItem(Product product, int quantity)
     {
         Inventory.Add(product, quantity);
-        return product.Name;
+        foreach (Product items in product)
+	    {
+            Console.WriteLine($"Product:{items.Name} Code:{items.Code} Price: ${items.Price} Quantity:{quantity}");
+	    }
     }
 
     public string StockFloat(int moneyDenomination, int quantity)
     {
         MoneyFloat.Add(moneyDenomination, quantity);
-        return MoneyFloat;
+        foreach (Dictionary<int, int> items in MoneyFloat)
+	    {
+            Console.WriteLine($"${items.Name} Code:{items.Code} Price: ${items.Price} Quantity:{quantity}");
+	    }
+    }
+
+    public void VendItem(string code, List<int> money)
+    {
+
     }
 }
 
@@ -115,4 +130,10 @@ public class Product
     public int Price { get; set; }
     public string Code { get; set; }
 
+    public Product (string name, int price, string code)
+	{
+        Name = name;
+        Price = price;
+        Code = code;
+	}
 }
