@@ -1,0 +1,5 @@
+C:\Users\hogma\source\repos\SD-300-W22D\Labs\SD-300-W22SD-Assignment\SD-300-W22SD-Assignment\obj\Debug\net6.0\SD-300-W22SD-Assignment.csproj.AssemblyReference.cache
+C:\Users\hogma\source\repos\SD-300-W22D\Labs\SD-300-W22SD-Assignment\SD-300-W22SD-Assignment\obj\Debug\net6.0\SD-300-W22SD-Assignment.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\hogma\source\repos\SD-300-W22D\Labs\SD-300-W22SD-Assignment\SD-300-W22SD-Assignment\obj\Debug\net6.0\SD-300-W22SD-Assignment.AssemblyInfoInputs.cache
+C:\Users\hogma\source\repos\SD-300-W22D\Labs\SD-300-W22SD-Assignment\SD-300-W22SD-Assignment\obj\Debug\net6.0\SD-300-W22SD-Assignment.AssemblyInfo.cs
+C:\Users\hogma\source\repos\SD-300-W22D\Labs\SD-300-W22SD-Assignment\SD-300-W22SD-Assignment\obj\Debug\net6.0\SD-300-W22SD-Assignment.csproj.CoreCompileInputs.cache
