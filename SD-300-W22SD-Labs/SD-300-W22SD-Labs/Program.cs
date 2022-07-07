@@ -54,26 +54,21 @@ public class Product
     
     public Product(string name, int price, string code)
     {
-        try
+        if (name == null)
         {
-            Name = name;
-            Price = price;
-            Code = code;
-        }
-        catch (Exception) when (name == null)
+            throw new Exception("Error: product name is null");
+        } 
+        else if (price < 0)
         {
-            Console.WriteLine("Name is null");
-            throw;
+            throw new Exception("Error: product price is invalid; negative value");
         }
-        catch (Exception) when (price < 0)
+        else if (code == null)
         {
-            Console.WriteLine("Price is invalid");
-            throw;
+            throw new Exception("Error: product code is null");
         }
-        catch (Exception) when (code == null)
-        {
-            Console.WriteLine("code is null");
-            throw;
-        }
+
+        Name = name;
+        Price = price;
+        Code = code;
     }
 }
