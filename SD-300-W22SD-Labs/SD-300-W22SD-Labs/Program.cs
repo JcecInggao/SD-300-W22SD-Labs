@@ -100,12 +100,7 @@ static class VendingMachine
 
             return $"Total change: ${change}";
         }
-        else if (userPayment == unitPrice)
-        {
-            // user gets no change
-            throw new Exception("No change");
-        }
-        else
+        else if (userPayment < unitPrice)
         {
             // user does not get item
             return new Exception("Insufficient payment");
