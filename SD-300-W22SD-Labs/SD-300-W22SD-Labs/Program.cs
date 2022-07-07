@@ -90,23 +90,35 @@ Console.WriteLine(Vending(vendingMachine, 5, 20)); // $10: 1 pieces, $2: 2 piece
 Console.WriteLine(Vending(vendingMachine, 1, 23)); // $10: 2 pieces, $2: 1 pieces
 
 
-public class VendingMachine
+public static class VendingMachine
 {
-    public int SerialNumber { get; set; }
-    public Dictionary<int, int> MoneyFloat { get; set; }
-    public Dictionary<Product, int> Inventory { get; set; }
+    // Properties
+    public static int SerialNumber { get; set; }
+    public static Dictionary<int, int> MoneyFloat { get; set; }
+    public static Dictionary<Product, int> Inventory { get; set; }
+    private readonly string _barcode { get; set; } = 1
+    public string Barcode { get; return _barcode }
 
-    public string StockItem(Product product, int quantity)
+    // Constructor
+    public static VendingMachine (int serialNumber)
+	{
+        SerialNumber = serialNumber;
+        Barcode = _barcode++;
+	}
+
+    // Methods
+    public static string StockItem(Product product, int quantity)
     {
         Inventory.Add(product, quantity);
         return product.Name;
     }
 
-    public string StockFloat(int moneyDenomination, int quantity)
+    public static string StockFloat(int moneyDenomination, int quantity)
     {
         MoneyFloat.Add(moneyDenomination, quantity);
         return MoneyFloat;
     }
+
 }
 
 public class Product
