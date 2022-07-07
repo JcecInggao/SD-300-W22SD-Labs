@@ -19,16 +19,25 @@ static class VendingMachine
     private static Dictionary<Product, int> _inventory { get; set; }
     private static readonly string? _barcode;
 
-    // Constructor
+     // Constructor
     static VendingMachine()
     {
         SerialNumber++;
-        _barcode = "";
+        if (_barcode == null)
+        {
+            throw new Exception("Barcode cannot be null");
+        }
+        _barcode = _barcode;
     }
 
     // Methods
     public static string StockItem(Product product, int quantity)
     {
+        if (quantity < 0)
+        {
+            throw new Exception("quantity cannot be negative");
+        }
+
         _inventory.Add(product, quantity);
         return product.Name;
     }
