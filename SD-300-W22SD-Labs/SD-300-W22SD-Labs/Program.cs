@@ -1,9 +1,16 @@
 ﻿using System.Text;
-Product kitkat = new Product("KitKat", 1, "A1");
-VendingMachine.StockItem(kitkat, 5);
-VendingMachine.StockFloat(10, 5);
+try
+{
+    Product kitkat = new Product("KitKat", 1, "A1");
+    VendingMachine.StockItem(kitkat, 5);
+    VendingMachine.StockFloat(10, 5);
+}
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+    throw;
+}
 
-// cant make constructor if static?
 static class VendingMachine
 {
     // Properties
@@ -11,6 +18,13 @@ static class VendingMachine
     private static Dictionary<int, int> _moneyFloat { get; set; }
     private static Dictionary<Product, int> _inventory { get; set; }
     private static readonly string? _barcode;
+
+    // Constructor
+    static VendingMachine()
+    {
+        SerialNumber++;
+        _barcode = "";
+    }
 
     // Methods
     public static string StockItem(Product product, int quantity)
@@ -40,8 +54,26 @@ public class Product
     
     public Product(string name, int price, string code)
     {
-        Name = name;
-        Price = price;
-        Code = code;
+        try
+        {
+            Name = name;
+            Price = price;
+            Code = code;
+        }
+        catch (Exception) when (name == null)
+        {
+            Console.WriteLine("Name is null");
+            throw;
+        }
+        catch (Exception) when (price < 0)
+        {
+            Console.WriteLine("Price is invalid");
+            throw;
+        }
+        catch (Exception) when (code == null)
+        {
+            Console.WriteLine("code is null");
+            throw;
+        }
     }
 }
