@@ -53,6 +53,64 @@ static class VendingMachine
 
         return floatString;
     }
+
+        public static void CalculateCoins(Dictionary<int, int> machine, int totalChange)
+    {
+        int change = totalChange;
+
+        foreach (KeyValuePair<int, int> coin in machine)
+        {
+            int usersCoins = 0;
+            int coinKey = coin.Key;
+            int coinsLeft = coin.Value;
+
+            // if the change is greater than the coin type, it will take a coin
+            if (coinKey <= change)
+            {
+                // will take away a coin until the coin is to big for the current change
+                // aka: while change is greater than coin type
+                if (coinsLeft > 0)
+                {
+                    while (change >= coinKey)
+                    {
+                        if (coinsLeft > 0)
+                        {
+                            change = change - coinKey;
+                            coinsLeft = coinsLeft - 1;
+                            usersCoins++;
+                        }
+                    }
+                    // grammatical fixing; pieces and piece when appropriate
+                    Console.WriteLine($"${coinKey}: {usersCoins} {(usersCoins > 1 ? "pieces" : "piece")}");
+                }
+            }
+        }
+    }
+
+    public static string VendItem(Dictionary<int, int> machine, int unitPrice, int userPayment)
+    {
+        if (userPayment > unitPrice)
+        {
+            // user pays more than price
+            // user receives change
+
+            // find total change
+            int change = userPayment - unitPrice;
+            CalculateCoins(machine, change);
+
+            return $"Total change: ${change}";
+        }
+        else if (userPayment == unitPrice)
+        {
+            // user gets no change
+            throw new Exception("No change");
+        }
+        else
+        {
+            // user does not get item
+            return new Exception("Insufficient payment");
+        }
+    }
 }
 
 public class Product
