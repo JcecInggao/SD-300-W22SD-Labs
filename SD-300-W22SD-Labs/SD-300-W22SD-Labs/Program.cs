@@ -90,35 +90,37 @@ Console.WriteLine(Vending(vendingMachine, 5, 20)); // $10: 1 pieces, $2: 2 piece
 Console.WriteLine(Vending(vendingMachine, 1, 23)); // $10: 2 pieces, $2: 1 pieces
 
 
-public static class VendingMachine
+Product kitkat = new Product("KitKat", 1, "A1");
+VendingMachine.StockItem(kitkat, 5);
+VendingMachine.StockFloat(10, 5);
+
+// cant make constructor if static?
+static class VendingMachine
 {
     // Properties
-    public static int SerialNumber { get; set; }
-    public static Dictionary<int, int> MoneyFloat { get; set; }
-    public static Dictionary<Product, int> Inventory { get; set; }
-    private readonly string _barcode { get; set; } = 1
-    public string Barcode { get; return _barcode }
-
-    // Constructor
-    public static VendingMachine (int serialNumber)
-	{
-        SerialNumber = serialNumber;
-        Barcode = _barcode++;
-	}
+    public static int SerialNumber { get; set; } = 1;
+    private static Dictionary<int, int> _moneyFloat { get; set; }
+    private static Dictionary<Product, int> _inventory { get; set; }
+    private static readonly string? _barcode;
 
     // Methods
     public static string StockItem(Product product, int quantity)
     {
-        Inventory.Add(product, quantity);
+        _inventory.Add(product, quantity);
         return product.Name;
     }
 
     public static string StockFloat(int moneyDenomination, int quantity)
     {
-        MoneyFloat.Add(moneyDenomination, quantity);
-        return MoneyFloat;
-    }
+        _moneyFloat.Add(moneyDenomination, quantity);
+        string floatString = "";
+        foreach (KeyValuePair<int,int> mf in _moneyFloat)
+        {
+            Console.WriteLine("${0} coins: {1}", mf.Key, mf.Value);
+        }
 
+        return floatString;
+    }
 }
 
 public class Product
@@ -126,5 +128,11 @@ public class Product
     public string Name { get; set; }
     public int Price { get; set; }
     public string Code { get; set; }
-
+    
+    public Product(string name, int price, string code)
+    {
+        Name = name;
+        Price = price;
+        Code = code;
+    }
 }
